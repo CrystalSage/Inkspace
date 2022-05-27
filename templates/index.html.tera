@@ -10,9 +10,12 @@
   </head>
 
   <body>
+	  <div style="padding:10px;background-color: red">
+		  Some
+	  </div>
 
 	{% block heading %}
-    <h1>Hi {{ name }}!</h1>
+    <h1 style>Hi {{ name }}!</h1>
 	<h2>{{ quote }}!</h2>
 	{% endblock heading %}
 
