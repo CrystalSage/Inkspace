@@ -6,11 +6,13 @@ use rocket_dyn_templates::context;
 fn index() -> Template {
     Template::render("index", context!{
         name: "Bourbon",
-        quote: "The weak links of strong chain"
+        quote: "The weak links of strong chain",
     })
 }
 
 #[launch]
 fn rocket() -> _ {
-    dbg!(rocket::build())
+    rocket::build()
+        .mount("/", routes![index])
+        .attach(Template::fairing())
 }
