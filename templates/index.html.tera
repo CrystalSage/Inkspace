@@ -1,14 +1,5 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <title>
-		{% block content %}
-		<h1>{{ name }}'s Blog!</h1>
-		{% endblock content %}
-	</title>
-  </head>
-
   <body>
 	  <div style="padding:10px;background-color: red">
 		  Some
@@ -16,7 +7,6 @@
 
 	{% block heading %}
     <h1 style>Hi {{ name }}!</h1>
-	<h2>{{ quote }}!</h2>
 	{% endblock heading %}
 
   </body>
