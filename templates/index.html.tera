@@ -1,15 +1,29 @@
 <!DOCTYPE html>
 <html>
   <body>
-	  <div style="padding:10px;background-color: red">
-		  Some
+	  <div class="parent">
+		  <h1 class="primary-heading"> Bourbon's Blog</h1>
+		  <p class="seperator"><p>
 	  </div>
-
-	{% block heading %}
-    <h1 style>Hi {{ name }}!</h1>
-	{% endblock heading %}
-
-	<a href="/list">See the list of blogs here</a>
-
   </body>
 </html>
+
+<style>
+.parent {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	background-color: #1d1f21;
+	color: #c5c6c8;
+}
+
+.primary-heading {
+	position: relative;
+	margin-top: 2rem;
+}
+
+.seperator {
+	border: 2px solid #c5c6c8;
+}
+</style>
