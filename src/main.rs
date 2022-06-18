@@ -20,15 +20,9 @@ fn index() -> Template {
     })
 }
 
-#[get("/list")]
-fn list() -> Template {
-    Template::render("list" , context!{ })
-}
-
-
 #[launch]
 fn rocket() -> _ {
     rocket::build()
-        .mount("/", routes![index, list])
+        .mount("/", routes![index])
         .attach(Template::fairing())
 }
