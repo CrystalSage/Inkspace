@@ -10,6 +10,36 @@
 				  <a href="/about">About </a>
 			  </div>
 		  </div>
+
+		  <div class="introduction">
+			  <p>  Uv! V'z Nzbf. V znxr ybat negvpyrf naq ivqrbf nobhg ubj pbzchgref jbex — wjryy hubjtgurlsfbzrgvzrfwjbex MZlcpbagragivflybatfsbez dqvqnpgvpanaqerkcybengbel anaqIVobsgrafsvaqanwjnltgbtgnyxanobhgREhfg</p>
+
+				<p>  V bjr n qrog bs tengvghqr gb rirel bar bs zl cngebaf, jvgubhg jubz abar bs guvf pbagrag jbhyq rkvfg. L'nyy ner gur orfg. Yrg'f xrrc yrneavat fghss gbtrgure.</p>
+		  </div>
+
+		  <div class="post-container">
+			  <h1> Recent articles </h1>
+			  <div class="post">
+				  <h1 class="post-title"> The curse of strong typing </h1>
+				  <div class="post-info"> 
+					  <ul>
+						  <li> Jun 01, 2022 </li>
+						  <li> 69 minute read </li>
+						  <li> rust </li>
+						  <li> async </li>
+					  </ul>
+				  </div>
+
+				  <div class="post-description">
+					  <p>Vg unccrarq jura V yrnfg rkcrpgrq vg.</p>
+
+					  <p>
+					Fbzrbar, fbzrjurer (nobir zr, cerfhznoyl) znqr n qrpvfvba. "Sebz abj ba", gurl qrpynerq, "nyy bhe arj fghss zhfg or jevggra va Ehfg".
+					  </p>
+				  </div>
+				  <a class="read-more" href="/post1"> Read more </a>
+			  </div>
+		  </div>
 	  </div>
   </body>
 </html>
@@ -20,7 +50,9 @@
 	--fg: #ebdbb2;
 }
 
+ @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 .parent {
+	font-family: 'Poppins', sans-serif;
 	background-color: var(--bg);
 	color: var(--fg);
 	position: absolute;
@@ -32,16 +64,84 @@
 	height: 100%;
 }
 
+.read-more {
+	font-family: 'Poppins', sans-serif;
+	font-weight: bold;
+	font-size: 0.92rem;
+	border-radius: 4px;
+	padding: 1.5rem 1rem;
+	height: 36px;
+	text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #535353;
+	margin-top: 5rem;
+	color: var(--fg);
+	border: 1px solid #535353;
+	text-decoration: none;
+}
+
+.post-container {
+	width: 50%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.post-container h1{
+	font-size: 1.5rem; /* 20px */
+	line-height: 1.75rem; 
+}
+
+.post-description {
+	font-size: 1.25rem;
+}
+
+.post {
+	background-color: #1f1f1f;
+	padding: 2rem;
+	max-width: 760px;
+}
+
+.post-info {
+	color: gray;
+	display: flex;
+	margin-left: 0;
+}
+
+.post-info ul{
+	padding: 0;
+}
+
+.post-info li{
+	display: inline;
+	list-style-type: none;
+}
+
+.introduction {
+	width: 50%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 5rem;
+	font-size: 20px;
+	padding: 1rem;
+
+}
+
 .nav {
 	padding: 0 1rem;
 	display: flex;
 	justify-content: center;
 	font-size: 1.5rem;
-	background-color: ;
+	border-bottom: 2.5px dashed var(--fg);
+
 }
 
 .navcontents {
 	padding: 1rem;
+	border-right: 2.5px dashed var(--fg);
+	border-left: 2.5px dashed var(--fg);
+	border-top: 2.5px dashed var(--fg);
 }
 
 .nav a {
@@ -54,7 +154,7 @@
 }
 
 .nav a + a {
-	margin-left: 5rem;
+	margin-left: 10rem;
 }
 
 .blog-heading {
