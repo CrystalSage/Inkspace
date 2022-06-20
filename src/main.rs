@@ -1,28 +1,13 @@
-#[macro_use] extern crate rocket;
+use std::fs;
 
-use rocket_dyn_templates::Template;
-use rocket_dyn_templates::context;
+mod html_gen;
 
-use std::env;
-
-fn getfile() -> String{
-    let args: Vec<String> = env::args().collect();
-    let filename = &args[1];
-
-    return filename.to_string();
+fn write_to_template(content: Vec<String>) {
+    fs::write("/home/bourbon/dev/Inkspace/templates/gen_index.html.tera", &content[0])
+        .expect("Failed to generate template!");
 }
 
-#[get("/")]
-fn index() -> Template {
-    let fname: String = getfile();
-    Template::render(fname , context!{
-        name: "Bourbon",
-    })
-}
-
-#[launch]
-fn rocket() -> _ {
-    rocket::build()
-        .mount("/", routes![index])
-        .attach(Template::fairing())
-}
+fn main() {
+    let content: Vec<String> = html_gen::call_generator();
+    write_to_template(content);
+} 
