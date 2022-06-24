@@ -9,7 +9,7 @@ This is a framework for blogs, built in Rust.
 We would like to support: 
 - [x] Headings
 - [x] Paragraphs
-- [ ] Anchor links
+- [x] Anchor links
 - [ ] Lists  
 
 ## Roadmap

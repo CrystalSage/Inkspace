@@ -3,10 +3,8 @@ use std::fs;
 mod html_gen;
 
 fn write_to_template(content: Vec<String>) {
-    for i in content  {
-        fs::write("/home/bourbon/dev/Inkspace/templates/gen_index.html.tera", i)
-            .expect("Failed to generate template!");
-    }
+    fs::write("/home/bourbon/dev/Inkspace/templates/gen_index.html.tera", &content[2])
+        .expect("Failed to generate template!");
 }
 
 fn main() {

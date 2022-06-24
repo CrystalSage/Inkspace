@@ -11,6 +11,10 @@ fn generate_paragraph(text_content: String) -> String {
     ("<p>".to_owned() + &text_content + "</p>").to_string()
 }
 
+fn generate_anchor(href: String, text_content: String) -> String {
+    format!("<a href='{href}'> {text_content} </a>")
+}
+
 fn generate_heading(heading: Heading, text_content: String) -> String{
     match heading {
         Heading::H1 => {
@@ -44,9 +48,13 @@ pub fn call_generator() -> Vec<String> {
     let mut content: Vec<String> = Vec::new();
     let heading: String = generate_heading(Heading::H1, "Hello Bourbon!".to_string());
     let paragraph: String = generate_paragraph("This is a paragraph!".to_string());
+    let anchor: String = generate_anchor(
+        "https://google.com".to_string(), 
+        "Google".to_string());
 
     content.push(heading);
     content.push(paragraph);
+    content.push(anchor);
     dbg!(&content);
 
     return content;
