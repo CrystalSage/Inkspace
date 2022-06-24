@@ -8,7 +8,7 @@ enum Heading{
 }
 
 fn generate_paragraph(text_content: String) -> String {
-    ("<p>".to_owned() + &text_content + "</p>").to_string()
+    format!("<p> {text_content} </p>")
 }
 
 fn generate_anchor(href: String, text_content: String) -> String {
@@ -18,28 +18,22 @@ fn generate_anchor(href: String, text_content: String) -> String {
 fn generate_heading(heading: Heading, text_content: String) -> String{
     match heading {
         Heading::H1 => {
-            let heading = "<h1>".to_owned() + &text_content + "</h1>";
-            heading.to_string()
+            format!("<h1> {} </h1>", text_content)
         }
         Heading::H2 => {
-            let heading = "<h2>".to_owned() + &text_content + "</h2>";
-            heading.to_string()
+            format!("<h2> {} </h2>", text_content)
         }
         Heading::H3 => {
-            let heading = "<h3>".to_owned() + &text_content + "</h3>";
-            heading.to_string()
+            format!("<h3> {} </h3>", text_content)
         }
         Heading::H4 => {
-            let heading = "<h4>".to_owned() + &text_content + "</h4>";
-            heading.to_string()
+            format!("<h4> {} </h4>", text_content)
         }
         Heading::H5 => {
-            let heading = "<h5>".to_owned() + &text_content + "</h5>";
-            heading.to_string()
+            format!("<h5> {} </h5>", text_content)
         }
         Heading::H6 => {
-            let heading = "<h6>".to_owned() + &text_content + "</h6>";
-            heading.to_string()
+            format!("<h6> {} </h6>", text_content)
         }
     }
 }
