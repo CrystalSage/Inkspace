@@ -7,8 +7,8 @@ This is a framework for blogs, built in Rust.
 *Goal*: Make the generator capable enough of generating the index template.
 
 We would like to support: 
-- [ ] Headings
-- [ ] Paragraphs
+- [x] Headings
+- [x] Paragraphs
 - [ ] Anchor links
 - [ ] Lists  
 
