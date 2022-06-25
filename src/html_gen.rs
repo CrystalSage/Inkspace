@@ -1,3 +1,4 @@
+// Types of HTML tags we can have. 
 enum Tags {
     Anchor,
     Heading,
@@ -20,8 +21,8 @@ enum List {
     Unordered,
 }
 
-// TODO: Somehow optimize this
-fn generate_unordered_list(list_type: List, list_elements: Vec<String>) -> Vec<String> {
+// TODO: Somehow make this tidy.
+fn generate_list(list_type: List, list_elements: Vec<String>) -> Vec<String> {
     let mut list_content: Vec<String> = vec!["".to_string(); 2 + list_elements.len()];
 
     match list_type {
@@ -65,7 +66,51 @@ fn generate_heading(heading: Heading, text_content: String) -> String{
 
 pub fn call_generator() -> Vec<String> {
     //let content: Vec<String> = Vec::new();
-    let list = generate_unordered_list(List::Ordered, vec!["eggs".to_string(),"bar".to_string()]);
+    let list = generate_list(List::Ordered, vec!["eggs".to_string(),"bar".to_string()]);
 
     return list;
+}
+
+#[cfg(test)]
+mod tests {
+    use crate::html_gen::generate_anchor;
+
+    use super::{generate_heading, generate_paragraph, generate_list};
+
+    #[test]
+    fn test_heading(){
+        let heading: String = generate_heading( super::Heading::H1, 
+                                        "This is a heading!".into());
+
+        assert_eq!(heading, "<h1> This is a heading! </h1>".to_string());
+    }
+
+    #[test]
+    fn test_anchor(){
+        let anchor = generate_anchor( 
+            "https://google.com".into(), 
+            "Google".into());
+
+        assert_eq!(anchor, "<a href='https://google.com'> Google </a>".to_string());
+    }
+
+    #[test]
+    fn test_paragraph() {
+        let paragraph = generate_paragraph(String::from("This is a paragraph!"));
+        assert_eq!(paragraph, "<p> This is a paragraph! </p>");
+    }
+
+    #[test]
+    fn test_list() {
+        let list_elements: Vec<String> = vec!["Eggs".into(), "Bar".into() ];
+        let list = generate_list(super::List::Unordered, list_elements);
+        let expected: Vec<String> = vec![
+            "<ul>".into(), 
+            "<li> Eggs </li>".into(),
+            "<li> Bar </li>".into(),
+            "</ul>".into()
+        ];
+
+        assert_eq!(list, expected);
+    }
 }
