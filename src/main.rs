@@ -1,10 +1,20 @@
 use std::fs;
+use std::io::{LineWriter, Write};
 
 mod html_gen;
 
 fn write_to_template(content: Vec<String>) {
-    fs::write("/home/bourbon/dev/Inkspace/templates/gen_index.html.tera", &content[2])
-        .expect("Failed to generate template!");
+    let file_handle = fs::File::create("/home/bourbon/dev/Inkspace/templates/gen_index.html.tera")
+        .expect("File not found!");
+
+    let mut file_handle = LineWriter::new(file_handle);
+
+    for tag in content {
+        writeln!(&mut file_handle, "{}", tag)
+            .expect("Failed to write to the file!");
+    }
+
+    file_handle.flush().unwrap();
 }
 
 fn main() {
