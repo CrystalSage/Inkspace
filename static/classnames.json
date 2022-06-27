@@ -1,0 +1,13 @@
+{
+	"Parent" : "parent",
+	"Title" : "blog-heading",
+	"Navbar" : "nav",
+	"NavContents" : "nav-contents",
+	"Introduction" : "introduction",
+	"PostContainer": "post-container",
+	"Posts" : "post",
+	"PostTitle" : "post-title",
+	"PostInfo" : "post-info",
+	"PostDescription" : "post-description",
+	"ReadMore" : "read-more"
+}
