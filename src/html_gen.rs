@@ -75,9 +75,21 @@ fn generate_heading(heading: Heading, text_content: String) -> String{
 
 pub fn call_generator() -> Vec<String> {
     //let content: Vec<String> = Vec::new();
-    let list = generate_list(List::Ordered, vec!["eggs".to_string(),"bar".to_string()]);
+    let list = generate_list(List::Ordered, 
+                             vec!["eggs".to_string(),"bar".to_string()]);
 
     return list;
+}
+
+// TODO: Add indents in future.
+// TODO: Find a better way to do this.
+pub fn generate_boilerplate() {
+    let mut boilerplate: Vec<String> = Vec::new();
+    boilerplate.push("<!DOCTYPE html>".to_string());
+    boilerplate.push("<html>".to_string());
+    boilerplate.push("<body>".to_string());
+    boilerplate.push("</body>".to_string());
+    boilerplate.push("</html>".to_string());
 }
 
 #[cfg(test)]
