@@ -21,6 +21,15 @@ enum List {
     Unordered,
 }
 
+// We want the generator to automatically generate *everything* for us.
+// So let's support adding class names programmatically.
+//
+// Eventually, we can make a map of the class names to tags to generate pages
+// which are never changed. e.g. landing page or the page skeleton
+fn add_classes(tags: Vec<String>, class_name: String) {
+    todo!()
+}
+
 // TODO: Somehow make this tidy.
 fn generate_list(list_type: List, list_elements: Vec<String>) -> Vec<String> {
     let mut list_content: Vec<String> = vec!["".to_string(); 2 + list_elements.len()];
