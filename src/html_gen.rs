@@ -1,3 +1,5 @@
+use std::fs;
+
 // Types of HTML tags we can have. 
 enum Tags {
     Anchor,
@@ -78,6 +80,8 @@ pub fn call_generator() -> Vec<String> {
     let list = generate_list(List::Ordered, 
                              vec!["eggs".to_string(),"bar".to_string()]);
 
+    get_classnames();
+
     return list;
 }
 
@@ -90,6 +94,14 @@ pub fn generate_boilerplate() {
     boilerplate.push("<body>".to_string());
     boilerplate.push("</body>".to_string());
     boilerplate.push("</html>".to_string());
+}
+
+fn get_classnames() {
+    let classes = fs::read_to_string("/home/bourbon/dev/Inkspace/static/classnames.json")
+        .expect("Failed to read JSON file");
+
+    let _classes: serde_json::Value  = serde_json::from_str(&classes)
+        .expect("Malformed JSON file");
 }
 
 #[cfg(test)]
