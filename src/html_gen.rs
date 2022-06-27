@@ -107,8 +107,8 @@ fn get_classnames() {
 #[cfg(test)]
 mod tests {
     use crate::html_gen::generate_anchor;
-
     use super::{generate_heading, generate_paragraph, generate_list};
+    use crate::fs;
 
     #[test]
     fn test_heading(){
@@ -145,5 +145,15 @@ mod tests {
         ];
 
         assert_eq!(list, expected);
+    }
+
+    #[test]
+    fn test_json() {
+        let classes = fs::read_to_string("/home/bourbon/dev/Inkspace/static/classnames.json")
+            .unwrap();
+        let classes: serde_json::Value  = serde_json::from_str(&classes)
+            .unwrap();
+
+        assert_eq!(classes["Title"], "blog-heading");
     }
 }
