@@ -21,5 +21,5 @@ fn write_to_template(content: Vec<String>) {
 fn main() {
     //let content: Vec<String> = html_gen::call_generator();
     //write_to_template(content);
-    md_parser::call_parse_function();
+    html_gen::call_generator();
 } 

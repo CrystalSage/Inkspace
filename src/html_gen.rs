@@ -1,4 +1,4 @@
-use std::fs;
+use std::{fs, fmt::format};
 
 // Types of HTML tags we can have. 
 enum Tags {
@@ -23,13 +23,33 @@ enum List {
     Unordered,
 }
 
-// We want the generator to automatically generate *everything* for us.
-// So let's support adding class names programmatically.
-//
-// Eventually, we can make a map of the class names to tags to generate pages
-// which are never changed. e.g. landing page or the page skeleton
-fn add_classes(tags: Vec<String>, class_name: String) {
+struct Post {
+    title: String,
+    description: String,
+    url: String,
+    date: String,
+    tags: Vec<String>,
+}
+
+// Parent function
+fn construct_blog() {
     todo!()
+}
+
+// List all the posts 
+fn construct_post_container(posts: Vec<Post>) {
+    let container_title = generate_heading(Heading::H1, "Recent articles".to_string());
+
+    for post in posts {
+        construct_post(post);
+    }
+}
+
+// Generate a post
+fn construct_post(post: Post) {
+    let post_title: String = generate_heading(Heading::H1, post.title);
+    let post_description: String = generate_paragraph(post.description);
+    let post_link: String = generate_anchor(post.url, "Read more".to_string());
 }
 
 // TODO: Somehow make this tidy.
@@ -94,11 +114,8 @@ fn get_classnames() {
     let classes = fs::read_to_string("/home/bourbon/dev/Inkspace/static/classnames.json")
         .expect("Failed to read JSON file");
 
-    let _classes: serde_json::Value  = serde_json::from_str(&classes)
+    let classes: serde_json::Value  = serde_json::from_str(&classes)
         .expect("Malformed JSON file");
-
-
-    dbg!(classes);
 }
 
 #[cfg(test)]
