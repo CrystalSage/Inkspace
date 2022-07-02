@@ -1,2 +1,5 @@
 pub mod md_lexer;
-pub mod md_parser;
+
+pub fn main(){
+    md_lexer::lex();
+}
