@@ -75,14 +75,8 @@ fn generate_heading(heading: Heading, text_content: String) -> String{
     }
 }
 
-pub fn call_generator() -> Vec<String> {
-    //let content: Vec<String> = Vec::new();
-    let list = generate_list(List::Ordered, 
-                             vec!["eggs".to_string(),"bar".to_string()]);
-
+pub fn call_generator() {
     get_classnames();
-
-    return list;
 }
 
 // TODO: Add indents in future.
@@ -102,6 +96,9 @@ fn get_classnames() {
 
     let _classes: serde_json::Value  = serde_json::from_str(&classes)
         .expect("Malformed JSON file");
+
+
+    dbg!(classes);
 }
 
 #[cfg(test)]
