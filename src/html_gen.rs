@@ -33,7 +33,14 @@ struct Post {
 
 // Parent function
 fn construct_blog() {
-    todo!()
+    generate_heading();
+    
+    let posts: Vec<Post> = fetch_posts();
+    construct_post_container(posts);
+}
+
+fn fetch_posts() {
+    todo!();
 }
 
 // List all the posts 
