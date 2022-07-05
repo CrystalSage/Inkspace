@@ -5,14 +5,8 @@ This is a framework for blogs, built in Rust.
 *Working towards implementing HTML generator*:
 
 *Goal*: Make the generator capable enough of generating the index template.
-*Subgoal*: Generate the page skeleton/boilerplate. 
-*Subsubgoal*: Find out a way to assign classes correctly.
 
-We would like to support: 
-- [x] Headings
-- [x] Paragraphs
-- [x] Anchor links
-- [x] Lists  
+*Subgoal*: Write regex for parsing our markdown tokens correctly.
 
 ## Roadmap
 - [x] Build a HTML template to visualize our design.
