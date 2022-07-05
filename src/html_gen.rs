@@ -1,4 +1,5 @@
-use std::{fs, fmt::format};
+use core::fmt;
+use std::{fs, vec};
 
 // Types of HTML tags we can have. 
 enum Tags {
@@ -23,40 +24,17 @@ enum List {
     Unordered,
 }
 
+struct PostDetails {
+    date_published: String,
+    reading_time_minutes: String,
+    tags: Vec<String>,
+}
+
 struct Post {
     title: String,
     description: String,
     url: String,
-    date: String,
-    tags: Vec<String>,
-}
-
-// Parent function
-fn construct_blog() {
-    generate_heading();
-    
-    let posts: Vec<Post> = fetch_posts();
-    construct_post_container(posts);
-}
-
-fn fetch_posts() {
-    todo!();
-}
-
-// List all the posts 
-fn construct_post_container(posts: Vec<Post>) {
-    let container_title = generate_heading(Heading::H1, "Recent articles".to_string());
-
-    for post in posts {
-        construct_post(post);
-    }
-}
-
-// Generate a post
-fn construct_post(post: Post) {
-    let post_title: String = generate_heading(Heading::H1, post.title);
-    let post_description: String = generate_paragraph(post.description);
-    let post_link: String = generate_anchor(post.url, "Read more".to_string());
+    details: PostDetails,
 }
 
 // TODO: Somehow make this tidy.
@@ -102,8 +80,56 @@ fn generate_heading(heading: Heading, text_content: String) -> String{
     }
 }
 
+fn generate_div(classes: String) -> String {
+    format!("<div class=\"{classes}\">")
+}
+
+
+// CALLME
 pub fn call_generator() {
-    get_classnames();
+    construct_blog();
+}
+
+
+// ============================================================================
+// # BLOG BUILDING FUNCTIONS BELOW
+// ============================================================================
+
+// Parent function
+fn construct_blog() {
+    let post: Post = Post { 
+        title: "The curse of strong typing".into(),
+        description: "Vg unccrarq jura V yrnfg rkcrpgrq vg.".into(),
+        url: "/post1".into(),
+        details: PostDetails { 
+            date_published: "Jun 01, 2022".into(),
+            reading_time_minutes: "69".into(),
+            tags: vec!["rust".into(), "async".into()],
+        },
+    };
+
+    construct_post(post);
+}
+
+fn fetch_posts() {
+    todo!();
+}
+
+// List all the posts 
+fn construct_post_container(posts: Vec<Post>) {
+    let container_title = generate_heading(Heading::H1, "Recent articles".to_string());
+
+    for post in posts {
+        construct_post(post);
+    }
+}
+
+// Generate a post
+fn construct_post(post: Post) {
+    let post_title: String = generate_heading(Heading::H1, post.title);
+    let post_description: String = generate_paragraph(post.description);
+    let post_link: String = generate_anchor(post.url, "Read more".to_string());
+    let post_details = generate_list(List::Unordered, vec![post.details.date_published, post.details.reading_time_minutes + " minutes long", post.details.tags.join(" ")]);
 }
 
 // TODO: Add indents in future.

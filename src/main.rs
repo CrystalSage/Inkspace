@@ -2,6 +2,7 @@ use std::fs;
 use std::io::{LineWriter, Write};
 
 mod md_interpreter;
+mod html_gen;
 
 fn write_to_template(content: Vec<String>) {
     let file_handle = fs::File::create("/home/bourbon/dev/Inkspace/templates/gen_index.html.tera")
@@ -18,5 +19,5 @@ fn write_to_template(content: Vec<String>) {
 }
 
 fn main() {
-    md_interpreter::main();
+    html_gen::call_generator();
 } 
