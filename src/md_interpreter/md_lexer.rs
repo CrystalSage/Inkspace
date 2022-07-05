@@ -1,5 +1,6 @@
 use std::io::{BufReader, BufRead};
 use std::fs::File;
+use regex::Regex;
 
 // A token that is produced after lexing.
 struct Token {
@@ -66,14 +67,19 @@ fn analyze_heading(line: String) -> Heading {
     }
 }
 
-fn read_content() {
+fn parse_for_tokens(content: BufReader<File>) {
+    let re = Regex::new(r"^\d{4}-\d{2}-\d{2}$").unwrap();
+    todo!();
+}
+
+
+fn read_content() -> BufReader<File>{
     let file = File::open("/home/bourbon/dev/Inkspace/static/test.md")
         .expect("Failed to read Markdown file");
 
     let reader = BufReader::new(file);
-    for line in reader.lines(){
-        println!("{:?}", line);
-    }
+
+    reader
 }
 
 pub fn lex() {
