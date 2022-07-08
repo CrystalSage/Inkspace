@@ -66,7 +66,7 @@ fn generate_paragraph(text_content: String) -> String {
 }
 
 fn generate_anchor(href: String, text_content: String) -> String {
-    format!("<a href='{href}'> {text_content} </a>")
+    format!("<a href='{href}'> {text_content} </a>\n")
 }
 
 fn generate_heading(heading: Heading, text_content: String) -> String{
@@ -81,13 +81,17 @@ fn generate_heading(heading: Heading, text_content: String) -> String{
 }
 
 fn generate_div(classes: String) -> String {
-    format!("<div class=\"{classes}\">")
+    format!("<div class=\"{classes}\">\n")
+}
+
+fn end_div() -> String {
+    format!("</div>\n")
 }
 
 
 // CALLME
 pub fn call_generator() {
-    dbg!(fetch_posts());
+    construct_blog();
 }
 
 
@@ -95,21 +99,36 @@ pub fn call_generator() {
 // # BLOG BUILDING FUNCTIONS BELOW
 // ============================================================================
 
-// Parent function
+// Boss function
 fn construct_blog() {
-    let post: Post = Post { 
-        title: "The curse of strong typing".into(),
-        description: "Vg unccrarq jura V yrnfg rkcrpgrq vg.".into(),
-        url: "/post1".into(),
-        details: PostDetails { 
-            date_published: "Jun 01, 2022".into(),
-            reading_time_minutes: "69".into(),
-            tags: vec!["rust".into(), "async".into()],
-        },
-    };
+    //let post: Post = Post { 
+    //    title: "The curse of strong typing".into(),
+    //    description: "Vg unccrarq jura V yrnfg rkcrpgrq vg.".into(),
+    //    url: "/post1".into(),
+    //    details: PostDetails { 
+    //        date_published: "Jun 01, 2022".into(),
+    //        reading_time_minutes: "69".into(),
+    //        tags: vec!["rust".into(), "async".into()],
+    //    },
+    //};
 
-    construct_post(post);
+    construct_navbar();
+    //construct_post(post);
 }
+
+fn construct_navbar() {
+    let mut navbar: String = String::new();
+
+    navbar += &generate_div("nav".to_string());
+    navbar += &generate_div("nav-contents".into());
+    navbar += &generate_anchor("/posts".into(), "Posts".into());
+    navbar += &generate_anchor("/about".into(), "About".into());
+    navbar += &end_div();
+    navbar += &end_div();
+
+    println!("{}", navbar);
+}
+
 
 fn fetch_posts() -> serde_json::Value{
     let posts = fs::read_to_string("/home/bourbon/dev/Inkspace/static/posts.json")
