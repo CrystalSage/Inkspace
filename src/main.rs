@@ -19,5 +19,5 @@ fn write_to_template(content: Vec<String>) {
 }
 
 fn main() {
-   md_interpreter::main();
+   html_gen::call_generator();
 } 

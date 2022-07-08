@@ -1,0 +1,17 @@
+{
+	"post1": {
+		"date": "01-02-1993",
+		"title": "Static RE",
+		"description": "Post about static RE"
+	},
+	"post2": {
+		"date": "01-02-1993",
+		"title": "Static RE",
+		"description": "Post about dynamic RE"
+	},
+	"post3": {
+		"date": "01-02-1993",
+		"title": "SIMD",
+		"description": "Post about vectorization"
+	}
+}

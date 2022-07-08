@@ -87,7 +87,7 @@ fn generate_div(classes: String) -> String {
 
 // CALLME
 pub fn call_generator() {
-    construct_blog();
+    dbg!(fetch_posts());
 }
 
 
@@ -111,8 +111,14 @@ fn construct_blog() {
     construct_post(post);
 }
 
-fn fetch_posts() {
-    todo!();
+fn fetch_posts() -> serde_json::Value{
+    let posts = fs::read_to_string("/home/bourbon/dev/Inkspace/static/posts.json")
+        .expect("Failed to read JSON file");
+
+    let posts: serde_json::Value  = serde_json::from_str(&posts)
+        .expect("Malformed JSON file");
+
+    return posts;
 }
 
 // List all the posts 
