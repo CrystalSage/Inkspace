@@ -1,5 +1,5 @@
 use core::fmt;
-use std::{fs, vec};
+use std::{fs, vec, env};
 
 // Types of HTML tags we can have. 
 enum Tags {
@@ -113,10 +113,11 @@ fn construct_blog() {
     //};
 
     construct_navbar();
-    //construct_post(post);
+    construct_introduction();
+    construct_posts();
 }
 
-fn construct_navbar() {
+fn construct_navbar() -> String {
     let mut navbar: String = String::new();
 
     navbar += &generate_div("nav".to_string());
@@ -126,7 +127,36 @@ fn construct_navbar() {
     navbar += &end_div();
     navbar += &end_div();
 
-    println!("{}", navbar);
+    return navbar
+}
+
+fn construct_introduction() -> String {
+    let mut intro: String = String::new();
+
+    intro += &generate_div("introduction".into());
+    intro += &generate_paragraph(" Uv! V'z Nzbf. V znxr ybat negvpyrf naq ivqrbf nobhg ubj pbzchgref jbex — wjryy hubjtgurlsfbzrgvzrfwjbex MZlcpbagragivflybatfsbez dqvqnpgvpanaqerkcybengbel anaqIVobsgrafsvaqanwjnltgbtgnyxanobhgREhfg".into());
+    intro += &generate_paragraph(" V bjr n qrog bs tengvghqr gb rirel bar bs zl cngebaf, jvgubhg jubz abar bs guvf pbagrag jbhyq rkvfg. L'nyy ner gur orfg. Yrg'f xrrc yrneavat fghss gbtrgure.".into());
+    intro += &end_div();
+
+    return intro;
+}
+
+fn construct_posts() -> String {
+    let mut posts: String = String::new();
+    let post = construct_post(Post {
+        title: "The curse of strong typing".into(),
+        description: "Vg unccrarq jura V yrnfg rkcrpgrq vg.\nFbzrbar, fbzrjurer (nobir zr, cerfhznoyl) znqr n qrpvfvba. Sebz abj ba, gurl qrpynerq, nyy bhe arj fghss zhfg or jevggra va Ehfg. Fbzrbar, fbzrjurer (nobir zr, cerfhznoyl) znqr n qrpvfvba. Sebz abj ba, gurl qrpynerq, nyy bhe arj fghss zhfg or jevggra va Ehfg".into(), 
+        url: "/post1".into(),
+        details: PostDetails { date_published: "1 June 2022".into(), reading_time_minutes: "69".into(), tags: vec!["rust".into(), "async".into()] }
+    });
+    
+    posts += &generate_div("post-container".into());
+    posts += &generate_heading(Heading::H1, "Recent articles".into());
+    posts += &generate_div("post".into());
+    posts += &generate_heading(Heading::H1, "The curse of strong typing".into());
+    posts += &generate_div("post-info".into());
+
+    return posts;
 }
 
 
@@ -138,15 +168,6 @@ fn fetch_posts() -> serde_json::Value{
         .expect("Malformed JSON file");
 
     return posts;
-}
-
-// List all the posts 
-fn construct_post_container(posts: Vec<Post>) {
-    let container_title = generate_heading(Heading::H1, "Recent articles".to_string());
-
-    for post in posts {
-        construct_post(post);
-    }
 }
 
 // Generate a post
