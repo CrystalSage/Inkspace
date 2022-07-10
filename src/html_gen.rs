@@ -171,11 +171,20 @@ fn fetch_posts() -> serde_json::Value{
 }
 
 // Generate a post
-fn construct_post(post: Post) {
+fn construct_post(post: Post) -> String {
+    let mut post_html: String = String::new();
+
     let post_title: String = generate_heading(Heading::H1, post.title);
     let post_description: String = generate_paragraph(post.description);
     let post_link: String = generate_anchor(post.url, "Read more".to_string());
-    let post_details = generate_list(List::Unordered, vec![post.details.date_published, post.details.reading_time_minutes + " minutes long", post.details.tags.join(" ")]);
+    let post_details: Vec<String> = generate_list(List::Unordered, vec![post.details.date_published, post.details.reading_time_minutes + " minutes long", post.details.tags.join(" ")]);
+
+    post_html += &post_title;
+    post_html += &post_description;
+    post_html += &post_link;
+    post_html += &post_details.join("\n");
+
+    return post_html;
 }
 
 // TODO: Add indents in future.
