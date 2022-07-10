@@ -67,9 +67,20 @@ fn analyze_heading(line: String) -> Heading {
     }
 }
 
+/// Documenting some regular expressions here. The ones used in the code are
+/// escaped and unreadable.
+/// ---------------------------------------------------------------------------
+/// # REGULAR EXPRESSIONS
+/// ---------------------------------------------------------------------------
+/// Headings : ^#{1,6}\s.*
+/// Links    : ^\[(.*)\]\((.*)\)
+/// Quote    : ^>.*
+/// LaTeX    : ^\$\$.*\$\$$
+
 fn parse_for_tokens(content: BufReader<File>) {
-    let re = Regex::new(r"^\d{4}-\d{2}-\d{2}$").unwrap();
-    todo!();
+    let regex_for_heading: String = "^#{1,6}\\s.*".into();
+    let regex_for_links: String ="^\\[(.*)\\]\\((.*)\\)".into();
+
 }
 
 
