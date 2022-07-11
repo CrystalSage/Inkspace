@@ -69,17 +69,27 @@ fn analyze_heading(line: String) -> Heading {
 
 /// Documenting some regular expressions here. The ones used in the code are
 /// escaped and unreadable.
+///
+/// The syntax was referred from: https://www.markdownguide.org/basic-syntax
 /// ---------------------------------------------------------------------------
 /// # REGULAR EXPRESSIONS
 /// ---------------------------------------------------------------------------
-/// Headings : ^#{1,6}\s.*
-/// Links    : ^\[(.*)\]\((.*)\)
-/// Quote    : ^>.*
-/// LaTeX    : ^\$\$.*\$\$$
+/// Headings         : ^#{1,6}\s.*
+/// Bold             : \s?[\*_]{2}(.*)[\*_]{2}\s?
+/// Italics          : \s?[*_](.*)[\*_]\s?
+/// Bold and italics : \s?[*_]{3}(.*)[\*_]{3}\s?
+/// Block quotes     : ^>(.*)
+/// Ordered lists    : ^\t?\d.\s(.*)$
+/// Unordered lists  : ^\t?[-*+]\s(.*)
+/// Inline code      : `(.*)`
+/// Fenced code      : ^```(.*)
+/// Links            : \[(.*)\]\((.*)\)
+/// LaTeX            : \$\$.*\$\$$
 
 fn parse_for_tokens(content: BufReader<File>) {
     let regex_for_heading: String = "^#{1,6}\\s.*".into();
     let regex_for_links: String ="^\\[(.*)\\]\\((.*)\\)".into();
+    let regex_for_bold: String ="^**".into();
 
 }
 
