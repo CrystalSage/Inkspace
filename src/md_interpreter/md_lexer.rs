@@ -86,10 +86,27 @@ fn analyze_heading(line: String) -> Heading {
 /// Links            : \[(.*)\]\((.*)\)
 /// LaTeX            : \$\$.*\$\$$
 
-fn parse_for_tokens(content: BufReader<File>) {
-    let regex_for_heading: String = "^#{1,6}\\s.*".into();
-    let regex_for_links: String ="^\\[(.*)\\]\\((.*)\\)".into();
-    let regex_for_bold: String ="^**".into();
+fn parse_for_tokens(mut content: BufReader<File>) {
+    let regex_for_headings: &str         = "^#{1,6}\\s.*";
+    let regex_for_bold: &str             = "\\s?[\\*_]{2}(.*)[\\*_]{2}\\s?";
+    let regex_for_italics: &str          = "\\s?[*_](.*)[\\*_]\\s?";
+    let regex_for_bold_and_italics: &str = "\\s?[*_]{3}(.*)[\\*_]{3}\\s?";
+    let regex_for_block_quotes: &str     = "^>(.*)";
+    let regex_for_ordered_lists: &str    = "^\t?\\d.\\s(.*)$";
+    let regex_for_unordered_lists: &str  = "^\t?[-*+]\\s(.*)";
+    let regex_for_inline_code: &str      = "`(.*)`";
+    let regex_for_fenced_code: &str      = "^```(.*)";
+    let regex_for_links: &str            = "\\[(.*)\\]\\((.*)\\)";
+    let regex_for_latex: &str            = "\\$\\$.*\\$\\$$";
+
+    let mut current_line: String = String::new();
+
+    loop {
+        match content.read_line(&mut current_line) {
+            Ok(_) => {},
+            Err(_) => panic!("No content in the Markdown buffer"),
+        }
+    }
 
 }
 
