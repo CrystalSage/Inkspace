@@ -1,5 +1,5 @@
 # Inkspace
-This is a framework for blogs, built in Rust. 
+This is a framework for blogs, built in Rust. And this is Vedant's Edit.
 
 ## Current progress
 *Working towards implementing HTML generator*:
